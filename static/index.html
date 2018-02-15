@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Developer Medley</title>
+    <link rel="stylesheet" href="codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="codemirror/theme/solarized.css">
+    <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      :root {
+        font-size: 2vw;
+      }
+      body {
+        font-family: 'Fira Sans', sans-serif;
+      }
+      input, button {
+        font-size: .8em;
+      }
+      main {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+      main > * {
+        display: grid;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        background: #fff;
+        z-index: 2;
+      }
+      .lobby {
+        padding: 20vh 20vw;
+        font-size: 2em;
+        align-items: center;
+        grid: 'label input' auto
+              'submit submit' auto
+            / auto 1fr;
+        grid-gap: .5em;
+      }
+      .im-ready {
+        grid-area: submit;
+      }
+      .editor {
+        grid-template-rows: 1fr;
+        font-size: 1rem;
+        display: grid;
+        grid-template-rows: auto 1fr;
+      }
+      .CodeMirror {
+        height: 100%;
+      }
+      .hideme {
+        display: none;
+      }
+      .ready {
+        align-items: center;
+        font-weight: 800;
+        font-style: italic;
+        font-size: 5em;
+        text-align: center;
+      }
+      .correct {
+        background: green;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-style: italic;
+        font-size: 5em;
+        text-align: center;
+      }
+      .finished {
+        background: green;
+        align-items: center;
+        justify-content: center;
+        font-weight: 800;
+        font-style: italic;
+        font-size: 5em;
+        text-align: center;
+      }
+      .continue {
+        display: none;
+        border-radius: 1em;
+        max-width: 50vw;
+      }
+      .done {
+        display: none;
+        border-radius: 1em;
+        max-width: 50vw;
+      }
+      .correct.waited .continue {
+        display: block;
+      }
+      .correct.final .done {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="editor">
+        <header class="status">
+          prompt 1/5
+        </header>
+      </div>
+      <div class="finished hideme">Finished!</div>
+      <div class="correct hideme">
+        Correct!
+        <button class="continue">Next &rarr;</button>
+        <button class="done">Done!</button>
+      </div>
+      <div class="ready">Get Ready...</div>
+      <form class="lobby">
+        <label for="playername">name:</label>
+        <input id="playername">
+        <button class="im-ready">submit</button>
+      </form>
+    </main>
+    <script src="codemirror/lib/codemirror.js"></script>
+    <script src="codemirror/addon/dialog/dialog.js"></script>
+    <script src="codemirror/mode/javascript/javascript.js"></script>
+
+    <script src="fw.js"></script>
+    <script src="player.js"></script>
+  </body>
+</html>

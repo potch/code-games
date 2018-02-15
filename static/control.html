@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Control</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        height: 90vh;
+        display: grid;
+        align-items: center;
+        padding: 20vh 20vw;
+        grid-gap: 5vw;
+        grid-auto-rows: auto;
+      }
+      button {
+        font-size: 3vw;
+      }
+    </style>
+  </head>
+  <body>
+    <button class="reset">reset</button>
+    <button class="set" disabled>set</button>
+    <button class="go" disabled>go</button>
+
+    <script src="fw.js"></script>
+    <script>
+      let server = new Socket({
+        onMessage: dispatch
+      });
+
+      function dispatch(msg) {
+        if (msg.type === 'hello') {
+          $('.set').removeAttribute('disabled');
+        }
+      }
+
+      $('.reset').addEventListener('click', function () {
+        server.send({ type: 'reset' });
+      });
+
+      $('.set').addEventListener('click', function () {
+        server.send({ type: 'set' });
+        $('.go').removeAttribute('disabled');
+      });
+
+      $('.go').addEventListener('click', function () {
+        server.send({ type: 'go' });
+      });
+
+      window.addEventListener('load', e => server.init());
+    </script>
+  </body>
+</html>

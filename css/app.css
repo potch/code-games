@@ -1,0 +1,36 @@
+* {
+  box-sizing: border-box;
+}
+body, html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+.app {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.editors, .runner {
+  flex: 1;
+  border: 0;
+  height: 100%;
+}
+
+.runner {
+  border-left: 1px solid #666;
+}
+
+.widget.error {
+  line-height: 100%;
+  color: red;
+}
+
+.CodeMirror {
+  height: 100%;
+}

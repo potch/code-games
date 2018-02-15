@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Developer Medley</title>
+    <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      :root {
+        font-size: 2vw;
+      }
+      body {
+        font-family: 'Fira Sans', sans-serif;
+      }
+      main {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        display: grid;
+        grid: "header header timer"  auto
+              "player player player" 1fr
+              "footer footer footer" auto
+            / 1fr 1fr 1fr;
+        grid-gap: 2vw;
+        align-items: center;
+      }
+
+      .player {
+        display: grid;
+        grid: "name stage status" 1fr / 2fr 1fr auto;
+        position: relative;
+        grid-gap: 4vw;
+        align-items: center;
+        padding: 2vw 4vw;
+      }
+
+      header {
+        grid-area: header;
+        padding: 2vw;
+      }
+      .controls {
+        grid-area: timer;
+        text-align: right;
+        padding: 2vw 4vw;
+      }
+      .players {
+        grid-area: player;
+        display: grid;
+        grid-auto-rows: 1fr;
+        align-self: stretch;
+      }
+      footer {
+        grid-area: footer;
+      }
+
+      .name {
+        grid-area: name;
+        font-size: 4em;
+        font-variant-numeric: ordinal;
+      }
+      .stage {
+        grid-area: stage;
+        font-variant-numeric: diagonal-fractions;
+        font-size: 4em;
+      }
+      .status {
+        grid-area: status;
+        height: 20vh;
+        width: 20vh;
+        border-radius: 20vh;
+      }
+
+      .status.bad {
+        background: red;
+      }
+      .status.good {
+        background: green;
+      }
+
+      h1 {
+        margin: 0;
+      }
+
+      .timer {
+        font-size: 3em;
+        font-variant-numeric: tabular-nums;
+      }
+
+      .player.finish {
+        background: #f0f0f0;
+      }
+
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>Firefox Developer Medley</h1>
+      </header>
+      <div class="controls">
+        <span class="timer">00:00.000</span>
+      </div>
+      <div class="players">
+        <template id="template-player">
+          <div class="player">
+            <div class="name"></div>
+            <div class="stage"></div>
+            <div class="status"></div>
+          </div>
+        </template>
+      </div>
+    </main>
+    <script src="/fw.js"></script>
+    <script src="/status.js"></script>
+  </body>
+</html>
