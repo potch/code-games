@@ -99,6 +99,8 @@ function dispatch(msg, id) {
         }
       }
       break;
+    case 'ping':
+      send(id, { type: 'pong '});
     case 'try':
       if (state === 'live') {
         let player = playerById(id);

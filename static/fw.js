@@ -29,6 +29,10 @@ class Socket {
       this.ready = true;
     });
 
+    setInterval(function () {
+      this.send({ type: 'ping '});
+    }, 5000);
+
     // Listen for messages
     this.socket.addEventListener('message', event => {
       try {
