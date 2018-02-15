@@ -1,4 +1,4 @@
-const { prompts, solutions } = require('./prompts');
+const { prompts, solutions, compare } = require('./prompts');
 
 let players = [];
 
@@ -26,10 +26,17 @@ function dispatch(msg, id) {
     case 'reset':
       state = 'idle';
       players = [];
-      sockets = {};
-      status = null;
+      try {
+        Object.values(sockets).forEach(
+          s => s.send(JSON.stringify({ type: 'reset' }))
+        );
+      } catch (e) {
+        console.warn('socket is gone');
+      }
       control = null;
       finish = 0;
+      status = null;
+      sockets = {};
       break;
     case 'registerStatus':
       status = id;
@@ -95,7 +102,7 @@ function dispatch(msg, id) {
     case 'try':
       if (state === 'live') {
         let player = playerById(id);
-        if (msg.content === solutions[player.stage - 1]) {
+        if (compare(msg.content, solutions[player.stage - 1])) {
           send(id, { type: 'correct' });
           player.status = true;
           if (player.stage < prompts.length) {

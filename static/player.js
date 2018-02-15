@@ -32,6 +32,9 @@ function dispatch(msg) {
       $('.correct').classList.add('final');
       $('.done').focus();
       break;
+    case 'reset':
+      window.location.reload();
+      break;
   }
 }
 

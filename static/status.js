@@ -23,6 +23,9 @@ function dispatch(msg) {
     case 'done':
       stopTimer();
       break;
+    case 'reset':
+      window.location.reload();
+      break;
   }
 }
 
