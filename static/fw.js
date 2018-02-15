@@ -29,7 +29,7 @@ class Socket {
       this.ready = true;
     });
 
-    setInterval(function () {
+    setInterval(() => {
       this.send({ type: 'ping '});
     }, 5000);
 
