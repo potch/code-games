@@ -101,6 +101,7 @@ function dispatch(msg, id) {
       break;
     case 'ping':
       send(id, { type: 'pong '});
+      break;
     case 'try':
       if (state === 'live') {
         let player = playerById(id);
@@ -126,10 +127,14 @@ function dispatch(msg, id) {
       break;
   }
   if (status) {
-    send(status, {
-      type: 'update',
-      players: Object.values(players)
-    });
+    try {
+      send(status, {
+        type: 'update',
+        players: Object.values(players)
+      });
+    } catch (e) {
+      console.error(e);
+    }
   }
 }
 
