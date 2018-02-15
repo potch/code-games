@@ -6,7 +6,7 @@ It's pretty hacked-together, but (mostly) worked for two rounds! :)
 
 ## To Run
 
-shell```
+```
 npm install
 node server.js
 ```
