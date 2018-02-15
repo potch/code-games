@@ -21,7 +21,7 @@ class Socket {
   }
 
   init() {
-    this.socket = new WebSocket('ws://localhost:8080');
+    this.socket = new WebSocket('ws://' + location.host);
 
     // Connection opened
     this.socket.addEventListener('open', event => {
